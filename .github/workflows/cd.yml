@@ -21,20 +21,20 @@ jobs:
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v1
         with:
-          workload_identity_provider: 'YOUR_WORKLOAD_IDENTITY_PROVIDER' # Paste the value here
-          service_account: 'YOUR_SERVICE_ACCOUNT' # e.g., github-actions-sa@your-project-id.iam.gserviceaccount.com
+          workload_identity_provider: 'projects/503062302911/locations/global/workloadIdentityPools/actions-pool-1/providers/github-provider' # Paste the value here
+          service_account: 'github-actions-sa@rapid-spider-461505-b4.iam.gserviceaccount.com' # e.g., github-actions-sa@your-project-id.iam.gserviceaccount.com
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
       - name: Configure Docker for Artifact Registry
-        run: gcloud auth configure-docker YOUR_REGION-docker.pkg.dev # e.g., us-central1-docker.pkg.dev
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev # e.g., us-central1-docker.pkg.dev
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: YOUR_REGION-docker.pkg.dev/YOUR_PROJECT_ID/fraud-detection-service/fraud-model:${{ github.sha }}
+          tags: us-central1-docker.pkg.dev/rapid-spider-461505-b4/fraud-model:${{ github.sha }}
 
       - name: Setup CML
         uses: iterative/setup-cml@v1
