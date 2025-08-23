@@ -43,4 +43,4 @@ jobs:
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cml comment create --commit-sha ${{ github.sha }} "✅ Docker image built and pushed successfully to Artifact Registry with tag: `${{ github.sha }}`"
+          cml comment create '✅ Docker image built and pushed successfully to Artifact Registry with tag: `${{ github.sha }}`' --commit-sha ${{ github.sha }}
