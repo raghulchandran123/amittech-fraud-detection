@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: us-central1-docker.pkg.dev/rapid-spider-461505-b4/fraud-model:${{ github.sha }}
+          tags: us-central1-docker.pkg.dev/rapid-spider-461505-b4/fraud-detection-service/fraud-model:${{ github.sha }}
 
       - name: Setup CML
         uses: iterative/setup-cml@v1
