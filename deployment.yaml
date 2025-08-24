@@ -1,0 +1,23 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-detection-deployment
+spec:
+  replicas: 2 # Run 2 copies of your application
+  selector:
+    matchLabels:
+      app: fraud-detection
+  template:
+    metadata:
+      labels:
+        app: fraud-detection
+    spec:
+      containers:
+      - name: fraud-detection-api
+        # --- REPLACE THIS LINE ---
+        image: us-central1-docker.pkg.dev/rapid-spider-461505-b4/fraud-detection-service/fraud-model:YOUR_IMAGE_TAG
+        # -------------------------
+        ports:
+        - containerPort: 8000 # The port your FastAPI app runs on
+
